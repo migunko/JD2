@@ -23,5 +23,10 @@
         </sql>
     </changeSet>
 
+      <changeSet id="3" author="alve">
+          <sql>
+              alter table `system_users` add column `dateofbirth` timestamp;
+          </sql>
 
+       </changeSet>
 </databaseChangeLog>
