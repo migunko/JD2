@@ -22,7 +22,7 @@ public class SystemUsersService {
     public SystemUsersService() {
         try {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(
-                    Resources.getResourceAsStream("by/pvt/service/mybatis-config.xml")
+                    Resources.getResourceAsStream("service/mybatis-config.xml")
             );
         } catch (IOException e) {
             log.log(Level.SEVERE, e.getMessage(), e);
