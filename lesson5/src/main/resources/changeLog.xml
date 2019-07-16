@@ -29,4 +29,38 @@
           </sql>
 
        </changeSet>
+
+    <changeSet id="4" author="alve">
+        <sql>
+            create table `clients` (
+            `client_id` integer not null,
+            `first_name` varchar(50),
+            `second_name` varchar(50),
+            `date_of_birth` timestamp,
+            `mail_femail` char(1),
+            `email` varchar(100)
+            );
+        </sql>
+    </changeSet>
+<changeSet id="5" author="alve">
+    <sql>
+        create table `products` (
+        `product_id` integer not null,
+        `product_name` varchar(250),
+        `price` double(10,2),
+        `exists` boolean
+        );
+    </sql>
+
+</changeSet>
+    <changeSet id="6" author="alve">
+        <sql>
+            create table `orders`   (
+            `order_id` integer not null,
+            `client_id` integer not null,
+            `product_id` integer not null,
+            `number` integer  unsigned not null
+            );
+        </sql>
+    </changeSet>
 </databaseChangeLog>
