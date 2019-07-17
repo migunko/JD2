@@ -55,7 +55,7 @@
                         <phase>process-sources</phase>
                         <configuration>
                             <changeLogFile>src/main/resources/changeLog.xml</changeLogFile>
-                            <url>jdbc:mysql://localhost:2016/hello_mysql?createDatabaseIfNotExist=true&amp;useSSL=false</url>
+                            <url>jdbc:mysql://localhost:3306/hello_mysql?createDatabaseIfNotExist=true&amp;useSSL=false</url>
                             <username>root</username>
                             <password>root</password>
                             <driver>com.mysql.jdbc.Driver</driver>
@@ -69,7 +69,7 @@
                         <phase>process-sources</phase>
                         <configuration>
                             <changeLogFile>src/main/resources/changeLog.xml</changeLogFile>
-                            <url>jdbc:mysql://localhost:2016/hello_mysql_junit?createDatabaseIfNotExist=true&amp;useSSL=false</url>
+                            <url>jdbc:mysql://localhost:3306/hello_mysql_junit?createDatabaseIfNotExist=true&amp;useSSL=false</url>
                             <username>root</username>
                             <password>root</password>
                             <driver>com.mysql.jdbc.Driver</driver>

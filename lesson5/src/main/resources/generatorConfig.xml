@@ -8,7 +8,7 @@
     <context id="hello_mysql" targetRuntime="MyBatis3">
         <!-- Database Connection Information -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:2016/hello_mysql?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3306/hello_mysql?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false" userId="root"
                         password="root"/>
 
         <!--entity Entity class-->
