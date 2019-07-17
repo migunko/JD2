@@ -4,7 +4,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
+import by.pvt.dto.SystemUsers;
+import by.pvt.service.SystemUsersService;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
@@ -50,5 +53,76 @@ public class HelloMysqlTest extends DBTestCase  {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void testCreate() {
+        try (Connection connection =
+                     DriverManager
+                             .getConnection("jdbc:mysql://localhost:2016/hello_mysql", "root", "root");
+             PreparedStatement ps = connection.prepareStatement("select * from system_users where id=3");
+
+        ) {
+            SystemUsers systemUser = new SystemUsers();
+            systemUser.setId(3);
+            systemUser.setUsername("user3");
+            systemUser.setActive(false);
+            systemUser.setDateofbirth(new Date());
+            new SystemUsersService().add(systemUser);
+            ResultSet rs = ps.executeQuery();
+
+            int id = 0;
+            String username = "";
+            boolean active = true;
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+                username = rs.getString("username");
+                active = rs.getBoolean("active");
+            }
+
+            assertEquals(3, id);
+            assertEquals("user3", username);
+            assertEquals(false, active);
+
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testUpdate() {
+        try (Connection connection =
+                     DriverManager
+                             .getConnection("jdbc:mysql://localhost:2016/hello_mysql", "root", "root");
+             PreparedStatement ps = connection.prepareStatement("select * from system_users where id=3");
+
+        ) {
+            SystemUsers systemUser = new SystemUsers();
+            systemUser.setId(3);
+            systemUser.setUsername("update");
+            systemUser.setActive(false);
+            systemUser.setDateofbirth(new Date());
+            new SystemUsersService().update(systemUser);
+            ResultSet rs = ps.executeQuery();
+
+            int id = 0;
+            String username = "";
+            boolean active = true;
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+                username = rs.getString("username");
+                active = rs.getBoolean("active");
+            }
+
+            assertEquals(3, id);
+            assertEquals("update", username);
+            assertEquals(false, active);
+
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

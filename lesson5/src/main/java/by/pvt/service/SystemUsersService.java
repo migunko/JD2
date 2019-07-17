@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -44,6 +45,7 @@ public class SystemUsersService {
                         log.info(user.getId() + " "
                                 + user.getUsername() + " "
                                 + user.getActive()));
+        new SystemUsersService().delete(2);
     }
 
     public List<SystemUsers> getSystemUsers() {
@@ -53,12 +55,39 @@ public class SystemUsersService {
                 .selectByExample(null);
     }
 
-    public void add(SystemUsers systemUser) {
-        int result = sqlSessionFactory
-                .openSession()
-                .getMapper(SystemUsersMapper.class)
-                .insert(systemUser);
+    public  void add(SystemUsers systemUser) {
+        SqlSession sqlSession =
+                sqlSessionFactory.openSession();
 
-        log.info("Added new systemUser with result=" + result);
+            SystemUsersMapper systemUsersMapper =
+                    sqlSession.getMapper(SystemUsersMapper.class);
+            systemUsersMapper.insert(systemUser);
+            sqlSession.commit();
+
+            sqlSession.close();
+    }
+    public void update(SystemUsers systemUser) {
+        SqlSession sqlSession =
+                sqlSessionFactory.openSession();
+
+            SystemUsersMapper systemUsersMapper =
+                    sqlSession.getMapper(SystemUsersMapper.class);
+            systemUsersMapper.updateByPrimaryKey(systemUser);
+            sqlSession.commit();
+
+            sqlSession.close();
+    }
+
+    public void delete(int id) {
+        SqlSession sqlSession =
+                sqlSessionFactory.openSession();
+
+            SystemUsersMapper systemUsersMapper =
+                    sqlSession.getMapper(SystemUsersMapper.class);
+            systemUsersMapper.deleteByPrimaryKey(id);
+            sqlSession.commit();
+
+            sqlSession.close();
     }
 }
+

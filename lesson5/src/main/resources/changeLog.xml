@@ -5,7 +5,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="1" author="alve">
+    <changeSet id="1" author="zhenya">
         <createTable tableName="system_users">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
@@ -17,20 +17,20 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="2" author="alve">
+    <changeSet id="2" author="zhenya">
         <sql>
             insert into `system_users` (`id`, `username`, `active`) values (1, 'Administrator', 1);
         </sql>
     </changeSet>
 
-      <changeSet id="3" author="alve">
+      <changeSet id="3" author="zhenya">
           <sql>
               alter table `system_users` add column `dateofbirth` timestamp;
           </sql>
 
        </changeSet>
 
-    <changeSet id="4" author="alve">
+    <changeSet id="4" author="zhenya">
         <sql>
             create table `clients` (
             `client_id` integer not null,
@@ -42,7 +42,7 @@
             );
         </sql>
     </changeSet>
-<changeSet id="5" author="alve">
+<changeSet id="5" author="zhenya">
     <sql>
         create table `products` (
         `product_id` integer not null,
@@ -53,7 +53,7 @@
     </sql>
 
 </changeSet>
-    <changeSet id="6" author="alve">
+    <changeSet id="6" author="zhenya">
         <sql>
             create table `orders`   (
             `order_id` integer not null,
