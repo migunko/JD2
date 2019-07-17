@@ -60,7 +60,7 @@ public class HelloMysqlTest extends DBTestCase  {
         try (Connection connection =
                      DriverManager
                              .getConnection("jdbc:mysql://localhost:2016/hello_mysql", "root", "root");
-             PreparedStatement ps = connection.prepareStatement("select * from system_users where id=3");
+             PreparedStatement ps = connection.prepareStatement("select * from system_users");
 
         ) {
             SystemUsers systemUser = new SystemUsers();
